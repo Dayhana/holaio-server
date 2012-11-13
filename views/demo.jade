@@ -1,0 +1,64 @@
+extends layout
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Demo
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='sidebar')
+        div(class="widgetwrap")
+          h5 Documentation
+          ul(id='menu-developer', class='menu')
+            li(class='menu-item')
+              a(href='/docs/android/') Android
+            li(class='menu-item')
+              a(href='/docs/ios/') iOS
+            li(class='menu-item')
+              a(href='/docs/js/') Javascript
+            li(class='menu-item')
+              a(href='/panel/demo') Demos
+            li(class='menu-item')
+              a(href='/panel/selector') Visual Selector
+      div(class='content right')
+        h3 General Information
+        p Depending on your license you have a limit of websites you can use holaIO on and a limit of bandwidth. Everytime you try to use the API, it will check if you surpass this limit, if you do, you can either upgrade to a better license or wait until next month so the counter goes down to 0 again.
+        h3 How to use our Live Demo
+        p If you want to learn how to use the holaIO, you can read the 
+          a(href="http://io.holalabs.com/docs") documentation 
+          | we provide.
+
+        div(class='modal', style='position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1; margin-top:15px;')
+          div(class='box box0 commentform')
+            h3 Live Demo
+            h4 This is an iframe that shows the JSON response for your requests. Play around with it!
+            input(id='completeUrl', name='completeUrl', type='text', readonly, style='width:545px !important;', value='https://api.holalabs.com/io/google.com/a/true')
+            div(style='height:200px; overflow:auto; padding:20px; border:1px solid #D7D8D9;', id='frame')
+              div(style="text-align:center; padding-top:10px;")
+                h3 Put the URL you want to get the content from and the CSS3 selector to choose the content from that site.
+                br
+                h3 Click 
+                  a(href="javascript:loadDemo()") Go
+                  |  to get started!
+            div(style='text-align:center; padding-top:15px;')
+              | http://
+              input(style='width:200px;', id='url', name='url', type='text', onkeydown='if (event.keyCode == 13) loadDemo()', value='google.com')
+              |  
+              input(style='width:50px;', id='selector', name='selector', type='text', value='a', onkeydown='if (event.keyCode == 13) loadDemo()')
+              |  
+              input(style='width:70px; height:30px;', type='submit', class='submit', id='buttonDemo', onclick='loadDemo()', value='Go')
+        h3 Other demos:
+        p We have also built demo apps for each of our libraries.
+        h4 Android
+        p You can view the source of the demo app 
+          a(href="https://github.com/holalabs/holaio-android/tree/master/Example", target='blank') here.
+        h4 iOS
+        p You can view the source of the demo app and download it 
+          a(href="https://github.com/holalabs/holaio-ios/tree/master/HolaIO.xcodeproj", target='blank') here.
+
+      script
+        var id = "#{id}"
+      script(src='https://holalabs.com/iopanel/holaio.js')
+      script(src='https://holalabs.com/iopanel/demo.js')

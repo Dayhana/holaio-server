@@ -1,0 +1,54 @@
+extends layout
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Visual Selector
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide commentform', style='width:960px; margin-left:0; margin-right:0;')
+        p(style="margin:30px;") This is very simple: enter the URL in the left box, then press enter and wait until it loads. Then click the part of the website you want. The selector will appear automatically in the right box. You can even test if it works correctly
+        div(class='box box1 left', style='width:500px; margin:auto; margin-bottom:20px;') This is a beta! It should work, but be careful!
+        div(class='box box2 left', style='width:500px; margin:auto; display:none;', id="yes")
+        div(class='box box3 left', style='width:500px; margin:auto; display:none;', id="no")
+        | http://
+        input(style='width:200px;', id='url', name='url', type='text', onkeydown='if (event.keyCode == 13) load()', value='google.com')
+        |  
+        input(style='width:70px; height:30px;', type='submit', class='submit', id='buttonDemo', onclick='load()', value='Go')
+        span(style="float:right;")
+          input(style='width:300px;', id='selector', name='selector', readonly, onkeydown='if (event.keyCode == 13) test()', placeholder='Click in the below frame to select')
+          input(style='width:70px; height:30px;', type='submit', class='submit', id='buttonTest', onclick='test()', value='Test')
+        iframe(width=960, height=600, src='about:blank', id='iframe')
+
+      script
+        var id = "#{id}"
+
+        load = function () {
+          document.getElementById('iframe').src = 'http://io.holalabs.com/iopanel/get.php?url='+encodeURIComponent('http://'+document.getElementById('url').value);
+        }
+
+        test = function () {
+          document.getElementById("buttonTest").value = "Testing...";
+          var holaio = new HolaIO(id);
+          holaio.get(document.getElementById('url').value, document.getElementById('selector').value, false, false, compare);
+        }
+
+        compare = function (err, json) {
+          if (typeof json[document.getElementById('selector').value] !== "undefined" && json[document.getElementById('selector').value] != "") {
+            document.getElementById("no").style.display = "none";
+            document.getElementById("yes").style.display = "inherit";
+            document.getElementById("yes").innerHTML = "It works!";
+          } else {
+            document.getElementById("yes").style.display = "none";
+            document.getElementById("no").style.display = "inherit";
+            document.getElementById("no").innerHTML = "Ooops, that selector is not working...";
+          }
+          document.getElementById("buttonTest").value = "Test";
+        }
+
+        window.onload = function () {
+          load("google.com");
+        }
+      script(src='http://io.holalabs.com/iopanel/holaio.js')

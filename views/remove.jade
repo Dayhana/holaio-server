@@ -1,0 +1,22 @@
+extends layout
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Remove your account
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='width:500px; margin:auto;')
+          form(action='/panel/remove', method='POST', class='commentform')
+            div(class='box box3 left')
+              h3 Are you sure you want to remove your HolaIO account?
+              br
+              h5 There's no going back and your account will be deleted forever.
+              br
+              p(class='submit')
+                input(type='submit', class='submit', value='Remove')
+                | 
+                a(class='btn', href='/panel') Cancel

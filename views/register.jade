@@ -1,0 +1,29 @@
+extends layout
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Register
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='width:400px; margin:auto; padding:30px;', class='box0')
+          - if ('undefined' !== typeof errors)
+            - each error in errors
+              div(class='box box3 left')
+                p= error
+          form(action='/panel/register', method='POST', class='commentform', name="form")
+            p
+              input(type='email', name='email', required)
+              label(for='email') Email
+            p
+              input(type='password', name='password', required)
+              label(for='password') Password
+            p(class='submit')
+              input(type='submit', class='submit', style='font-size:30px; color: #BFF8C6; background-image: linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -o-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -moz-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -webkit-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -ms-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -webkit-gradient(linear,left bottom,left top,color-stop(1, #7BE397),color-stop(0.26, #419629));', value='Register Now!')
+              p(class='small', style='margin-top:10px;') By signing up, you're accepting our 
+                a(href='http://io.holalabs.com/terms/') terms of use
+                |  and 
+                a(href='http://io.holalabs.com/privacy/') privacy conditions

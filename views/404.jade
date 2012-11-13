@@ -1,0 +1,41 @@
+extends layout
+
+block body
+  style
+    @font-face { font-family: Evolution; src: url('Evolution.ttf'); } 
+    .content {text-align:center;}
+    .dogs:hover {
+      transform: scale(1.1);
+     -moz-transform: scale(1.1);
+     -webkit-transform: scale(1.1);
+     transition: -webkit-transform .15s linear;
+     -moz-transition: -webkit-transform .15s linear;
+     -webkit-transition: -webkit-transform .15s linear;
+     cursor:pointer;
+    }
+    .bigerror {
+      font-family: Evolution, sans-serif;
+      font-size:100px;
+      line-height:110px;
+      background:#E5E5E5;
+      border-top-left-radius: 250px;
+      border-top-right-radius: 250px;
+      width: 480px;
+      text-align: center;
+      height: 100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Error
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        h1(class='bigerror') Not found
+        img(src='http://io.holalabs.com/iopanel/tarasira.jpg', class='dogs', style='border-bottom-left-radius:250px;')
+        img(src='http://io.holalabs.com/iopanel/syros.jpg', class='dogs', style='border-bottom-right-radius:250px;')
+        h1 But our dogs have been searching all the night

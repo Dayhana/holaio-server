@@ -1,0 +1,74 @@
+extends layout
+
+block body
+  - if ('undefined' !== typeof bandwidth)
+    div(class='featured')
+      div(class='featured_wrap clearfix')
+        div(class='page_titles')
+          h1 Panel
+        div(class='feat_widget_area')
+          blockquote(id='hola', style='font-size:20px;')
+
+    div(class='primary')
+      div(class='primary_wrap')
+        - if ('undefined' !== typeof newuser)
+          div(class='box box0', style='text-align:center;')
+            h1 holaIO lets you use 
+              b any content
+              |  of the Internet with only a 
+              b couple lines
+              |  of code
+              a(href='/docs') Get started, it's dead simple!
+        div(class='content')
+          div(id='infobox', class='box box4 left')
+            p(id='apikeycontainer') Your API key is 
+              strong(id=user.id)
+              a(id='apikeylink', onclick='showKey()') show key
+            p Your subscription is 
+              - if (user.subscription == 0)
+                strong unlimited 
+              - else if (user.subscription == 1)
+                strong free 
+              - else
+                strong paid
+              | and you've used 
+              strong(id='bandwidth') #{bandwidth}
+              |  of your 
+              strong(id='maxBandwidth') #{maxBandwidth}
+              |  quota
+          | Your bandwidth usage: 
+          div(class='meter', id='percentbar')
+            span(style='width: 0%', id='percent')
+          br
+          br
+          div(id='chartContainer')
+            | View by: 
+            select(onchange='changeChart(this.value)')
+              option(value=0) Bandwidth
+              option(value=1) Queries
+            div(id='chart')
+
+        div(class='sidebar')
+          div(class='widgetwrap')
+            div(class='box box0', style='text-align:center; background: #DAFFC7;')
+              h1 
+                a(href='/docs', style='color: #409629;') Get Started!
+            br
+            h5 Help and support
+              p During the beta period, we would like to receive feedback to make HolaIO an even more awesome product than it is right now. We'd love to hear your ideas and problems.
+              ul(class='menu')
+                li(class='menu-item')
+                  a(href='javascript:UserVoice.showPopupWidget();') Open a ticket
+                li(class='menu-item')
+                  a(href='mailto:hola@holalabs.com') Mail us
+    script(src='https://www.google.com/jsapi')
+    //script(src='/panel.js')
+    script(src='https://io.holalabs.com/iopanel/panel.js')
+    script
+      window.bandwidth = #{bandwidth};
+      window.maxBandwidth = #{maxBandwidth};
+      window.queries = !{JSON.stringify(queries)};
+  - else
+    script
+      window.location = 'https://io.holalabs.com/panel/?new=true';
+

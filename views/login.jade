@@ -1,0 +1,29 @@
+extends layout
+
+block body
+  div(class='featured')
+    div(class='featured_wrap clearfix')
+      div(class='page_titles')
+        h1 Login
+
+  div(class='primary')
+    div(class='primary_wrap')
+      div(class='content wide')
+        div(style='margin:0 auto; width:88%; position:relative;')
+          - if (message)
+                div(class='box box3 left')
+                  p= message
+          div(style="width:40%; float:left; text-align:center; font-size:30px; line-height:1;")
+            p If you haven't registered yet, start having fun in just a second!
+            a(href='/panel/register', class='btn1', style='font-size: 35px; color: #BFF8C6;width: 305px; height: 30px;text-align: center;padding: 5px; padding-bottom:15px;float: center;background-image: linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -o-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -moz-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -webkit-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -ms-linear-gradient(bottom, #7BE397 100%, #419629 26%);background-image: -webkit-gradient(linear,left bottom,left top,color-stop(1, #7BE397),color-stop(0.26, #419629));') Sign Up Free Now!
+          div(style='width:60%; margin:auto;float:right;')
+            form(action='/panel/login', method='POST', id='login', style='margin-left:80px;padding:20px; width: 75%;float:center;', class='commentform box0')
+              p
+                input(type='email', name="email", required)
+                label(for="email") Email
+              p
+                input(type='password', name="password", required)
+                label(for="password") Password
+              p(class='submit')
+                input(type='submit', class='submit', style='font-size:16px; width:100px;', value='Login')
+                a(href='/panel/forgot', style='margin-left:15px;') Forgot your password?
